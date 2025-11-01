@@ -3,13 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<link rel="stylesheet" href="src/style.css">
     <title>Weather App</title>
   </head>
   <body>
     <header>
         <h1>Weather App</h1>
+        <input type="text" placeholder="Stockholm, Copenhagen, Oslo, Helsinki, Reykjavik" required/>
+        <input type="submit" value="Search"">
+    
+</button>
     </header>
     <main>
+      <div class="weather">
+        <h1>Stockholm</h1>
+        <p>Saturday, November 1</p>
+        <div class="temp">
+        <div class="temp-degrees">8 &deg C</div>
+        <div class="temp-icon">🌤️</div>
+        </div>
+        <hr>
+        <div class="conditions">
+          <div class="humidity">87%/h</div>
+          <div class="wind">7.2km/h</div>
+        </div>
+        <div class="temperature"></div>
+      </div>
 
     </main>
     <footer></footer>
