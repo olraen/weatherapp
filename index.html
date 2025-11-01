@@ -29,24 +29,47 @@
       </header>
       <main>
         <div class="current-weather">
-          <h1>Stockholm</h1>
-          <p class="current-time-date">
-            12:30 <br />
-            Saturday, November 1 <br />
-            Partially cloudy
-          </p>
-
-          <div class="current-temp">
-            <div class="temp-degrees">8 &deg C</div>
-            <div class="temp-icon">🌤️</div>
+          <div class="current-city-date-temp">
+            <div class="current-city-date">
+              <h1>Stockholm</h1>
+              <p>
+                12:30<br />
+                Saturday, November 1 <br />
+                Partially cloudy
+              </p>
+            </div>
+            <div class="current-temp">
+              <div class="temp-degrees">8 &degC</div>
+              <div class="temp-icon">🌤️</div>
+            </div>
           </div>
+
           <hr />
           <div class="current-air-details">
             <div class="humidity">
-              <span class="air">💧 humidity </span><br />87%
+              <span class="air">
+                <svg
+                  class="icon-water"
+                  viewBox="0 0 64 64"
+                  color="currentColor"
+                >
+                  <!-- This path draws a simple water drop -->
+                  <path
+                    d="M32 2C22 18 14 30 14 42a18 18 0 0 0 36 0c0-12-8-24-18-40z"
+                  />
+                </svg>
+                humidity </span
+              ><br />87%
             </div>
             <div class="wind">
-              <span class="air">🌬️ wind </span><br />7.2 km/h
+              <span class="air">
+                <svg class="icon-wind" viewBox="0 0 512 512">
+                  <path d="M80 160h240a40 40 0 1 0-40-40" />
+                  <path d="M80 256h320a40 40 0 1 0-40-40" />
+                  <path d="M80 352h160a40 40 0 1 1-40 40" />
+                </svg>
+                wind </span
+              ><br />7.2 km/h
             </div>
           </div>
         </div>

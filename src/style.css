@@ -9,11 +9,23 @@ a {
   text-decoration: none;
 }
 
+h1 {
+  margin-top: 0;
+  font-weight: 500;
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background-color: #506584;
+  margin: 20px 0;
+}
+
 .weather-app {
   max-width: 600px;
   /* background-color: gray; */
-  margin: 45px auto;
-  padding: 20px;
+  margin: 20px auto;
+  padding: 10px;
 }
 
 .search-form {
@@ -53,26 +65,30 @@ a {
   border-left: 5px solid orange;
 }
 
-.current-time-date {
-  font-size: 20px;
-  font-weight: 400;
-  color: #506584;
-  margin-bottom: 20px;
+.current-city-date-temp {
+  display: flex;
+  justify-content: space-between;
 }
 
 .current-temp {
   display: flex;
-  margin-bottom: 20px;
+}
+
+.current-city-date p {
+  font-size: 18px;
+  font-weight: 400;
+  color: #506584;
 }
 
 .temp-degrees {
-  width: 20%;
-  font-size: 32px;
+  font-size: 62px;
+  font-weight: 500;
+  margin-right: 15px;
 }
 
 .temp-icon {
-  width: 20%;
-  font-size: 32px;
+  font-size: 62px;
+  padding-left: 10px;
 }
 
 .current-air-details {
@@ -98,4 +114,22 @@ a {
 footer {
   margin-top: 25px;
   opacity: 0.6;
+}
+
+.icon-water {
+  width: 20px;
+  height: 20px;
+  stroke: orange;
+  stroke-width: 4;
+  fill: none;
+}
+
+.icon-wind {
+  width: 20px;
+  height: 20px;
+  stroke: orange; /* outline color */
+  stroke-width: 20; /* thickness */
+  fill: none; /* no fill inside */
+  stroke-linecap: round; /* rounded line ends */
+  stroke-linejoin: round; /* smooth joins */
 }
