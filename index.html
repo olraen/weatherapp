@@ -3,37 +3,65 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-<link rel="stylesheet" href="src/style.css">
+    <link rel="stylesheet" href="src/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&family=Oswald:wght@200..700&family=Roboto:ital,wght@0,100..900;1,100..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap"
+      rel="stylesheet"
+    />
     <title>Weather App</title>
   </head>
-  <body>
-    <header>
-        <h1>Weather App</h1>
-        <input type="text" placeholder="Stockholm, Copenhagen, Oslo, Helsinki, Reykjavik" required/>
-        <input type="submit" value="Search"">
-    
-</button>
-    </header>
-    <main>
-      <div class="weather">
-        <h1>Stockholm</h1>
-        <p>Saturday, November 1</p>
-        <div class="temp">
-        <div class="temp-degrees">8 &deg C</div>
-        <div class="temp-icon">🌤️</div>
-        </div>
-        <hr>
-        <div class="conditions">
-          <div class="humidity">87%/h</div>
-          <div class="wind">7.2km/h</div>
-        </div>
-        <div class="temperature"></div>
-      </div>
 
-    </main>
-    <footer></footer>
-      This is project is coded by <a href="https://github.com/olgadot" target="_blank">Olun</a>, is on <a href="https://github.com/olgadot/weatherapp" target="_blank">Github</a> and hosted on <a href="https://weatherapp-olun.netlify.app" target="_blank">Netlify</a>.
-    </footer>
+  <body>
+    <div class="weather-app">
+      <header>
+        <h1>Olun Weather</h1>
+        <form class="search-form">
+          <input
+            type="text"
+            placeholder="Stockholm, Copenhagen, Oslo, Helsinki, Reykjavik"
+            required
+            class="search-input"
+          />
+          <input type="submit" value="Search" class="search-button" />
+        </form>
+      </header>
+      <main>
+        <div class="current-weather">
+          <h1>Stockholm</h1>
+          <p class="current-time-date">
+            12:30 <br />
+            Saturday, November 1 <br />
+            Partially cloudy
+          </p>
+
+          <div class="current-temp">
+            <div class="temp-degrees">8 &deg C</div>
+            <div class="temp-icon">🌤️</div>
+          </div>
+          <hr />
+          <div class="current-air-details">
+            <div class="humidity">
+              <span class="air">💧 humidity </span><br />87%
+            </div>
+            <div class="wind">
+              <span class="air">🌬️ wind </span><br />7.2 km/h
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer>
+        This project is coded by
+        <a href="https://github.com/olraen" target="_blank">Olraen</a>, is on
+        <a href="https://github.com/olraen/weatherapp" target="_blank"
+          >Github</a
+        >
+        and hosted on
+        <a href="https://weatherapp-olun.netlify.app" target="_blank">Netlify</a
+        >.
+      </footer>
+    </div>
   </body>
 </html>
