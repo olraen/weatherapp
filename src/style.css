@@ -47,9 +47,14 @@ hr {
   width: 70%;
   height: 25px;
   padding: 10px;
-  border: none;
+  border: 2px solid transparent;
   border-radius: 5px;
   color: var(--text-light);
+}
+
+.search-input:focus {
+  border-color: var(--accent, orange);
+  outline: none;
 }
 
 .search-input::placeholder {
