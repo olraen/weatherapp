@@ -10,19 +10,26 @@
       href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&family=Oswald:wght@200..700&family=Roboto:ital,wght@0,100..900;1,100..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap"
       rel="stylesheet"
     />
-    <title>Weather App</title>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Olun Weather App</title>
   </head>
 
   <body>
     <div class="weather-app">
       <header>
         <h1>Olun Weather</h1>
-        <form class="search-form">
+        <form class="search-form" , id="search-form">
           <input
             type="text"
             placeholder="Stockholm, Copenhagen, Oslo, Helsinki, Reykjavik"
             required
             class="search-input"
+            ,
+            id="search-input"
           />
           <input type="submit" value="Search" class="search-button" />
         </form>
@@ -31,7 +38,7 @@
         <div class="current-weather">
           <div class="current-city-date-temp">
             <div class="current-city-date">
-              <h1>Stockholm</h1>
+              <h1 id="city">Stockholm</h1>
               <p>
                 12:30<br />
                 Saturday, November 1 <br />
@@ -47,22 +54,18 @@
           <hr />
           <div class="current-air-details">
             <div class="humidity">
-              <svg
-                class="humidity-icon"
-                viewBox="0 0 64 64"
-                color="currentColor"
-              >
-                <path
-                  d="M32 2C22 18 14 30 14 42a18 18 0 0 0 36 0c0-12-8-24-18-40z"
-                />
-              </svg>
-              humidity
-              <br />
+              <div class="humidity-icon-text">
+                <span class="material-icons">water_drop</span>
+                <span class="label">humidity</span> <br />
+              </div>
               <span class="humidity-percent">87%</span>
             </div>
+
             <div class="wind">
-              💨 wind
-              <br />
+              <div class="wind-icon-text">
+                <span class="material-icons">air</span>
+                <span class="label">wind</span> <br />
+              </div>
               <span class="wind-speed">7.2 km/h</span>
             </div>
           </div>
@@ -80,5 +83,6 @@
         >.
       </footer>
     </div>
+    <script src="src/index.js"></script>
   </body>
 </html>

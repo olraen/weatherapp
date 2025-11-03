@@ -4,7 +4,7 @@
   --bg-dark: #0f172c;
   --text-light: ghostwhite;
   --text-muted: #506584;
-  --accent: orange;
+  --accent: #d89034;
 }
 
 body {
@@ -49,6 +49,7 @@ hr {
   padding: 10px;
   border: none;
   border-radius: 5px;
+  color: var(--text-light);
 }
 
 .search-input::placeholder {
@@ -114,23 +115,25 @@ hr {
 .humidity,
 .wind {
   width: 45%;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 300;
   color: var(--text-muted);
+}
+
+.humidity-icon-text,
+.wind-icon-text {
+  display: flex;
+  align-items: center;
+}
+
+.material-icons {
+  margin-right: 5px;
 }
 
 .humidity-percent,
 .wind-speed {
   font-size: 30px;
   color: var(--text-light);
-}
-
-.humidity-icon {
-  width: 20px;
-  height: 20px;
-  stroke: var(--text-muted);
-  stroke-width: 4;
-  fill: none;
 }
 
 footer {
