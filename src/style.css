@@ -187,7 +187,7 @@ footer {
 .forecast-temperatures {
   text-align: center;
   color: var(--accent);
-  margin-top: 20px;
+  margin-top: 5px;
   display: flex;
   justify-content: center;
 }
@@ -197,5 +197,6 @@ footer {
 }
 
 .forecast-icon {
-  width: 100%;
+  width: 60px;
+  height: 60px;
 }
