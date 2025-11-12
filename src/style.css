@@ -150,11 +150,7 @@ hr {
 
 .humidity-percent,
 .wind-speed,
-.feels-like-temp {
-  font-size: 28px;
-  color: white;
-}
-
+.feels-like-temp,
 .humidity-unit,
 .wind-speed-unit,
 .feels-like-unit {
@@ -196,6 +192,10 @@ footer {
   justify-content: center;
 }
 
-.forecast-temperature {
-  padding: 0 5px;
+.forecast-temperatures strong {
+  padding-right: 10px;
+}
+
+.forecast-icon {
+  width: 100%;
 }

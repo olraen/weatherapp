@@ -1,132 +1,101 @@
-function formatTime(date) {
-  let minutes = date.getMinutes();
-  let hours = date.getHours();
+// Comments
+// - used String for formatting time and arrow functions
+// - simplified some code using destructuring
+// - think first day forest is current day, not next day, so indexing from 1 to 6 in displayForecast function
+// - used map and join for building forecast HTML
+// - Github repo has also index-course-like-js prior cleaning
 
-  if (minutes < 10) {
-    minutes = `0${minutes}`;
-  }
+const API_KEY = "1o02ad6aa40e7b19fa37f8t5928ba37d";
+const BASE_URL = "https://api.shecodes.io/weather/v1";
 
-  return `${hours}:${minutes}`;
-}
+// Format time as "HH:MM"
+// use arrow function
+const formatTime = (date) =>
+  `${date.getHours()}:${String(date.getMinutes()).padStart(2, "0")}`;
 
-function formatDate(date) {
-  let months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-
-  let weekday = days[date.getDay()];
-  let month = months[date.getMonth()];
-  let monthday = date.getDate();
-
-  return `${weekday}, ${month} ${monthday}`;
-}
-
-function refreshWeather(response) {
-  // temperature and weather element
-  let tempElement = document.querySelector("#temp");
-  let currentDescriptionElement = document.querySelector(
-    "#current-description"
-  );
-
-  let temp = Math.round(response.data.temperature.current);
-  let currentDescription = response.data.condition.description;
-  tempElement.innerHTML = temp;
-  currentDescriptionElement.innerHTML = currentDescription;
-
-  // icon
-  let iconElement = document.querySelector("#temp-icon");
-  iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="weather-app-icon" />`;
-
-  //   humidity, wind, feels like temperature elements
-  let humidityElement = document.querySelector("#humidity-percent");
-  let windElement = document.querySelector("#wind-speed");
-  let feelsLikeTempElement = document.querySelector("#feels-like-temp");
-  let humiditiy = Math.round(response.data.temperature.humidity);
-  let wind = Number.parseFloat(response.data.wind.speed).toFixed(1);
-  let tempFeelsLike = Math.round(response.data.temperature.feels_like);
-  humidityElement.innerHTML = humiditiy;
-  windElement.innerHTML = wind;
-  feelsLikeTempElement.innerHTML = tempFeelsLike;
-
-  //  date and time
-  // let date = new Date(response.data.time * 1000);
-  let date = new Date();
-  let currentTimeElement = document.querySelector("#current-time");
-  let currentDateElement = document.querySelector("#current-date");
-  currentTimeElement.innerHTML = formatTime(date);
-  currentDateElement.innerHTML = formatDate(date);
-}
-
-function searchCity(city) {
-  let apiKey = "1o02ad6aa40e7b19fa37f8t5928ba37d";
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}`;
-
-  axios.get(apiUrl).then(refreshWeather);
-}
-
-function handleSearchForm(event) {
-  event.preventDefault();
-
-  //   Get input city from the form
-  let searchInput = document.querySelector("#search-input");
-  console.log(searchInput.value);
-  let city = document.querySelector("#city");
-  city.innerHTML = searchInput.value;
-
-  //   Query data for the input city
-  searchCity(searchInput.value);
-}
-
-let searchFormElement = document.querySelector("#search-form");
-searchFormElement.addEventListener("submit", handleSearchForm);
-
-function displayForecast() {
-  let days = ["Tue", "Wed", "Thu", "Fri", "Sat"];
-  let forecastHtml = "";
-
-  days.forEach(function (day) {
-    forecastHtml =
-      forecastHtml +
-      `
-  <div class="forecast-day">
-    <div class="forecast-date">${day}</div>
-    <div class="forecast-icon">🌤️</div>
-    <div class="forecast-temperatures">
-      <div class="forecast-temperature">
-        <strong>15º</strong>
-      </div>
-      <div class="forecast-temperature">9º</div>
-    </div>
-  </div>`;
+// Format date as "Wednesday, November 12"
+const formatDate = (date) =>
+  date.toLocaleDateString("en-US", {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
   });
 
-  let forecastElement = document.querySelector("#forecast");
-  forecastElement.innerHTML = forecastHtml;
+// Get week day abbreviation from timestamp
+const formatDay = (timestamp) =>
+  new Date(timestamp * 1000).toLocaleDateString("en-US", {
+    weekday: "short",
+  });
+
+// Update weather data on the page
+function refreshWeather(response) {
+  const { city, condition, temperature, wind } = response.data;
+  document.querySelector("#city").textContent = city;
+  document.querySelector("#temp").textContent = Math.round(temperature.current);
+  document.querySelector("#current-description").textContent =
+    condition.description;
+  document.querySelector(
+    "#temp-icon"
+  ).innerHTML = `<img src="${condition.icon_url}" alt="${condition.description}" class="weather-app-icon"/>`;
+
+  document.querySelector("#humidity-percent").textContent = Math.round(
+    temperature.humidity
+  );
+  document.querySelector("#wind-speed").textContent = wind.speed.toFixed(1);
+  document.querySelector("#feels-like-temp").textContent = Math.round(
+    temperature.feels_like
+  );
+
+  const now = new Date();
+  document.querySelector("#current-time").textContent = formatTime(now);
+  document.querySelector("#current-date").textContent = formatDate(now);
+
+  getForecast(city);
 }
 
-// Load default city
-searchCity("Stockholm");
+// Display forecast data on the page
+function displayForecast({ data }) {
+  const forecastHtml = data.daily
+    .slice(1, 6)
+    .map(
+      (day) => `
+      <div class="forecast-day">
+        <div class="forecast-date">${formatDay(day.time)}</div>
+        <img src="${day.condition.icon_url}" alt="${
+        day.condition.description
+      }" class="forecast-icon" />
+        <div class="forecast-temperatures">
+          <strong>${Math.round(day.temperature.maximum)}º</strong>
+          <span>${Math.round(day.temperature.minimum)}º</span>
+        </div>
+      </div>
+    `
+    )
+    .join("");
 
-// Display forecast
-displayForecast();
+  document.querySelector("#forecast").innerHTML = forecastHtml;
+}
+
+// Search for city weather data
+function searchCity(city) {
+  axios
+    .get(`${BASE_URL}/current?query=${city}&key=${API_KEY}`)
+    .then(refreshWeather);
+}
+
+// Get forecast data for a city
+function getForecast(city) {
+  axios
+    .get(`${BASE_URL}/forecast?query=${city}&key=${API_KEY}`)
+    .then(displayForecast);
+}
+
+// Handle search form
+document.querySelector("#search-form").addEventListener("submit", (event) => {
+  event.preventDefault();
+  const city = document.querySelector("#search-input").value.trim();
+  if (city) searchCity(city);
+});
+
+// Initial search
+searchCity("Stockholm");
